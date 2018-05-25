@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.jxw.fes.filehandle.dao.MigrateFileMapper" >
+  <resultMap id="BaseResultMap" type="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
+    <id column="sid" property="sid" jdbcType="BIGINT" />
+    <result column="instCode" property="instcode" jdbcType="CHAR" />
+    <result column="fileName" property="filename" jdbcType="VARCHAR" />
+    <result column="finalCounts" property="finalcounts" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="tims" property="tims" jdbcType="TIMESTAMP" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="createTims" property="createtims" jdbcType="TIMESTAMP" />
+    <result column="io" property="io" jdbcType="INTEGER" />
+    <result column="executeId" property="executeid" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="BIGINT" />
+    <result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="sucCounts" property="succounts" jdbcType="INTEGER" />
+    <result column="failCounts" property="failcounts" jdbcType="INTEGER" />
+    <result column="fileRspName" property="filerspname" jdbcType="VARCHAR" />
+    <result column="up_oss" property="upOss" jdbcType="INTEGER" />
+    <result column="migrateType" property="migratetype" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.iqb.jxw.fes.filehandle.entity.MigrateFile" extends="BaseResultMap" >
+    <result column="reason" property="reason" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sid, instCode, fileName, finalCounts, state, tims, code, type, createTims, io, executeId, 
+    version, endTime, category, sucCounts, failCounts, fileRspName, up_oss, migrateType
+  </sql>
+  <sql id="Blob_Column_List" >
+    reason
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from migratefile
+    where sid = #{sid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from migratefile
+    where sid = #{sid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
+    insert into migratefile (sid, instCode, fileName, 
+      finalCounts, state, tims, 
+      code, type, createTims, 
+      io, executeId, version, 
+      endTime, category, sucCounts, 
+      failCounts, fileRspName, up_oss, 
+      migrateType, reason)
+    values (#{sid,jdbcType=BIGINT}, #{instcode,jdbcType=CHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{finalcounts,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, #{tims,jdbcType=TIMESTAMP}, 
+      #{code,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{createtims,jdbcType=TIMESTAMP}, 
+      #{io,jdbcType=INTEGER}, #{executeid,jdbcType=INTEGER}, #{version,jdbcType=BIGINT}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{category,jdbcType=VARCHAR}, #{succounts,jdbcType=INTEGER}, 
+      #{failcounts,jdbcType=INTEGER}, #{filerspname,jdbcType=VARCHAR}, #{upOss,jdbcType=INTEGER}, 
+      #{migratetype,jdbcType=INTEGER}, #{reason,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
+    insert into migratefile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="instcode != null" >
+        instCode,
+      </if>
+      <if test="filename != null" >
+        fileName,
+      </if>
+      <if test="finalcounts != null" >
+        finalCounts,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="tims != null" >
+        tims,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createtims != null" >
+        createTims,
+      </if>
+      <if test="io != null" >
+        io,
+      </if>
+      <if test="executeid != null" >
+        executeId,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="succounts != null" >
+        sucCounts,
+      </if>
+      <if test="failcounts != null" >
+        failCounts,
+      </if>
+      <if test="filerspname != null" >
+        fileRspName,
+      </if>
+      <if test="upOss != null" >
+        up_oss,
+      </if>
+      <if test="migratetype != null" >
+        migrateType,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=BIGINT},
+      </if>
+      <if test="instcode != null" >
+        #{instcode,jdbcType=CHAR},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="finalcounts != null" >
+        #{finalcounts,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="tims != null" >
+        #{tims,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createtims != null" >
+        #{createtims,jdbcType=TIMESTAMP},
+      </if>
+      <if test="io != null" >
+        #{io,jdbcType=INTEGER},
+      </if>
+      <if test="executeid != null" >
+        #{executeid,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=BIGINT},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="succounts != null" >
+        #{succounts,jdbcType=INTEGER},
+      </if>
+      <if test="failcounts != null" >
+        #{failcounts,jdbcType=INTEGER},
+      </if>
+      <if test="filerspname != null" >
+        #{filerspname,jdbcType=VARCHAR},
+      </if>
+      <if test="upOss != null" >
+        #{upOss,jdbcType=INTEGER},
+      </if>
+      <if test="migratetype != null" >
+        #{migratetype,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
+    update migratefile
+    <set >
+      <if test="instcode != null" >
+        instCode = #{instcode,jdbcType=CHAR},
+      </if>
+      <if test="filename != null" >
+        fileName = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="finalcounts != null" >
+        finalCounts = #{finalcounts,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="tims != null" >
+        tims = #{tims,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createtims != null" >
+        createTims = #{createtims,jdbcType=TIMESTAMP},
+      </if>
+      <if test="io != null" >
+        io = #{io,jdbcType=INTEGER},
+      </if>
+      <if test="executeid != null" >
+        executeId = #{executeid,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=BIGINT},
+      </if>
+      <if test="endtime != null" >
+        endTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="succounts != null" >
+        sucCounts = #{succounts,jdbcType=INTEGER},
+      </if>
+      <if test="failcounts != null" >
+        failCounts = #{failcounts,jdbcType=INTEGER},
+      </if>
+      <if test="filerspname != null" >
+        fileRspName = #{filerspname,jdbcType=VARCHAR},
+      </if>
+      <if test="upOss != null" >
+        up_oss = #{upOss,jdbcType=INTEGER},
+      </if>
+      <if test="migratetype != null" >
+        migrateType = #{migratetype,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
+    update migratefile
+    set instCode = #{instcode,jdbcType=CHAR},
+      fileName = #{filename,jdbcType=VARCHAR},
+      finalCounts = #{finalcounts,jdbcType=INTEGER},
+      state = #{state,jdbcType=VARCHAR},
+      tims = #{tims,jdbcType=TIMESTAMP},
+      code = #{code,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      createTims = #{createtims,jdbcType=TIMESTAMP},
+      io = #{io,jdbcType=INTEGER},
+      executeId = #{executeid,jdbcType=INTEGER},
+      version = #{version,jdbcType=BIGINT},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      category = #{category,jdbcType=VARCHAR},
+      sucCounts = #{succounts,jdbcType=INTEGER},
+      failCounts = #{failcounts,jdbcType=INTEGER},
+      fileRspName = #{filerspname,jdbcType=VARCHAR},
+      up_oss = #{upOss,jdbcType=INTEGER},
+      migrateType = #{migratetype,jdbcType=INTEGER},
+      reason = #{reason,jdbcType=LONGVARCHAR}
+    where sid = #{sid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
+    update migratefile
+    set instCode = #{instcode,jdbcType=CHAR},
+      fileName = #{filename,jdbcType=VARCHAR},
+      finalCounts = #{finalcounts,jdbcType=INTEGER},
+      state = #{state,jdbcType=VARCHAR},
+      tims = #{tims,jdbcType=TIMESTAMP},
+      code = #{code,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      createTims = #{createtims,jdbcType=TIMESTAMP},
+      io = #{io,jdbcType=INTEGER},
+      executeId = #{executeid,jdbcType=INTEGER},
+      version = #{version,jdbcType=BIGINT},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      category = #{category,jdbcType=VARCHAR},
+      sucCounts = #{succounts,jdbcType=INTEGER},
+      failCounts = #{failcounts,jdbcType=INTEGER},
+      fileRspName = #{filerspname,jdbcType=VARCHAR},
+      up_oss = #{upOss,jdbcType=INTEGER},
+      migrateType = #{migratetype,jdbcType=INTEGER}
+    where sid = #{sid,jdbcType=BIGINT}
+  </update>
+
+  <select id="findToday" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from migratefile
+    where createTims >= #{date}
+  </select>
+</mapper>

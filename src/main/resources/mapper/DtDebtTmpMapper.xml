@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.jxw.fes.filehandle.dao.DtDebtTmpMapper" >
+  <resultMap id="BaseResultMap" type="com.iqb.jxw.fes.filehandle.entity.DtDebtTmp" >
+    <id column="sid" property="sid" jdbcType="BIGINT" />
+    <result column="InstCode" property="instcode" jdbcType="CHAR" />
+    <result column="AcctNo" property="acctno" jdbcType="VARCHAR" />
+    <result column="CustNo" property="custno" jdbcType="VARCHAR" />
+    <result column="ProductId" property="productid" jdbcType="VARCHAR" />
+    <result column="RaiseDate" property="raisedate" jdbcType="VARCHAR" />
+    <result column="RaiseEndDate" property="raiseenddate" jdbcType="VARCHAR" />
+    <result column="IntType" property="inttype" jdbcType="CHAR" />
+    <result column="IntPayDay" property="intpayday" jdbcType="CHAR" />
+    <result column="Duration" property="duration" jdbcType="SMALLINT" />
+    <result column="DebtAmount" property="debtamount" jdbcType="DECIMAL" />
+    <result column="DebtRate" property="debtrate" jdbcType="DECIMAL" />
+    <result column="State" property="state" jdbcType="CHAR" />
+    <result column="ProdDesc" property="proddesc" jdbcType="VARCHAR" />
+    <result column="BailAcctNo" property="bailacctno" jdbcType="VARCHAR" />
+    <result column="BailAccountId" property="bailaccountid" jdbcType="VARCHAR" />
+    <result column="NominalAccountId" property="nominalaccountid" jdbcType="VARCHAR" />
+    <result column="ReceiptAccountId" property="receiptaccountid" jdbcType="VARCHAR" />
+    <result column="IntDate" property="intdate" jdbcType="VARCHAR" />
+    <result column="tims" property="tims" jdbcType="TIMESTAMP" />
+    <result column="AccountId" property="accountid" jdbcType="VARCHAR" />
+    <result column="Fid" property="fid" jdbcType="BIGINT" />
+    <result column="Rank" property="rank" jdbcType="INTEGER" />
+    <result column="FromProductId" property="fromproductid" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="BIGINT" />
+    <result column="RspCode" property="rspcode" jdbcType="VARCHAR" />
+    <result column="isChange" property="ischange" jdbcType="INTEGER" />
+    <result column="fileRspName" property="filerspname" jdbcType="VARCHAR" />
+    <result column="MborrowFlag" property="mborrowflag" jdbcType="VARCHAR" />
+    <result column="EntrustFlag" property="entrustflag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sid, InstCode, AcctNo, CustNo, ProductId, RaiseDate, RaiseEndDate, IntType, IntPayDay, 
+    Duration, DebtAmount, DebtRate, State, ProdDesc, BailAcctNo, BailAccountId, NominalAccountId, 
+    ReceiptAccountId, IntDate, tims, AccountId, Fid, Rank, FromProductId, flag, version, 
+    RspCode, isChange, fileRspName, MborrowFlag, EntrustFlag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dt_debt_tmp
+    where sid = #{sid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dt_debt_tmp
+    where sid = #{sid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.iqb.jxw.fes.filehandle.entity.DtDebtTmp" >
+    insert into dt_debt_tmp (sid, InstCode, AcctNo, 
+      CustNo, ProductId, RaiseDate, 
+      RaiseEndDate, IntType, IntPayDay, 
+      Duration, DebtAmount, DebtRate, 
+      State, ProdDesc, BailAcctNo, 
+      BailAccountId, NominalAccountId, ReceiptAccountId, 
+      IntDate, tims, AccountId, 
+      Fid, Rank, FromProductId, 
+      flag, version, RspCode, 
+      isChange, fileRspName, MborrowFlag, 
+      EntrustFlag)
+    values (#{sid,jdbcType=BIGINT}, #{instcode,jdbcType=CHAR}, #{acctno,jdbcType=VARCHAR}, 
+      #{custno,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, #{raisedate,jdbcType=VARCHAR}, 
+      #{raiseenddate,jdbcType=VARCHAR}, #{inttype,jdbcType=CHAR}, #{intpayday,jdbcType=CHAR}, 
+      #{duration,jdbcType=SMALLINT}, #{debtamount,jdbcType=DECIMAL}, #{debtrate,jdbcType=DECIMAL}, 
+      #{state,jdbcType=CHAR}, #{proddesc,jdbcType=VARCHAR}, #{bailacctno,jdbcType=VARCHAR}, 
+      #{bailaccountid,jdbcType=VARCHAR}, #{nominalaccountid,jdbcType=VARCHAR}, #{receiptaccountid,jdbcType=VARCHAR}, 
+      #{intdate,jdbcType=VARCHAR}, #{tims,jdbcType=TIMESTAMP}, #{accountid,jdbcType=VARCHAR}, 
+      #{fid,jdbcType=BIGINT}, #{rank,jdbcType=INTEGER}, #{fromproductid,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=BIGINT}, #{version,jdbcType=BIGINT}, #{rspcode,jdbcType=VARCHAR}, 
+      #{ischange,jdbcType=INTEGER}, #{filerspname,jdbcType=VARCHAR}, #{mborrowflag,jdbcType=VARCHAR}, 
+      #{entrustflag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.iqb.jxw.fes.filehandle.entity.DtDebtTmp" >
+    insert into dt_debt_tmp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="instcode != null" >
+        InstCode,
+      </if>
+      <if test="acctno != null" >
+        AcctNo,
+      </if>
+      <if test="custno != null" >
+        CustNo,
+      </if>
+      <if test="productid != null" >
+        ProductId,
+      </if>
+      <if test="raisedate != null" >
+        RaiseDate,
+      </if>
+      <if test="raiseenddate != null" >
+        RaiseEndDate,
+      </if>
+      <if test="inttype != null" >
+        IntType,
+      </if>
+      <if test="intpayday != null" >
+        IntPayDay,
+      </if>
+      <if test="duration != null" >
+        Duration,
+      </if>
+      <if test="debtamount != null" >
+        DebtAmount,
+      </if>
+      <if test="debtrate != null" >
+        DebtRate,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="proddesc != null" >
+        ProdDesc,
+      </if>
+      <if test="bailacctno != null" >
+        BailAcctNo,
+      </if>
+      <if test="bailaccountid != null" >
+        BailAccountId,
+      </if>
+      <if test="nominalaccountid != null" >
+        NominalAccountId,
+      </if>
+      <if test="receiptaccountid != null" >
+        ReceiptAccountId,
+      </if>
+      <if test="intdate != null" >
+        IntDate,
+      </if>
+      <if test="tims != null" >
+        tims,
+      </if>
+      <if test="accountid != null" >
+        AccountId,
+      </if>
+      <if test="fid != null" >
+        Fid,
+      </if>
+      <if test="rank != null" >
+        Rank,
+      </if>
+      <if test="fromproductid != null" >
+        FromProductId,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="rspcode != null" >
+        RspCode,
+      </if>
+      <if test="ischange != null" >
+        isChange,
+      </if>
+      <if test="filerspname != null" >
+        fileRspName,
+      </if>
+      <if test="mborrowflag != null" >
+        MborrowFlag,
+      </if>
+      <if test="entrustflag != null" >
+        EntrustFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=BIGINT},
+      </if>
+      <if test="instcode != null" >
+        #{instcode,jdbcType=CHAR},
+      </if>
+      <if test="acctno != null" >
+        #{acctno,jdbcType=VARCHAR},
+      </if>
+      <if test="custno != null" >
+        #{custno,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="raisedate != null" >
+        #{raisedate,jdbcType=VARCHAR},
+      </if>
+      <if test="raiseenddate != null" >
+        #{raiseenddate,jdbcType=VARCHAR},
+      </if>
+      <if test="inttype != null" >
+        #{inttype,jdbcType=CHAR},
+      </if>
+      <if test="intpayday != null" >
+        #{intpayday,jdbcType=CHAR},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=SMALLINT},
+      </if>
+      <if test="debtamount != null" >
+        #{debtamount,jdbcType=DECIMAL},
+      </if>
+      <if test="debtrate != null" >
+        #{debtrate,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="proddesc != null" >
+        #{proddesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bailacctno != null" >
+        #{bailacctno,jdbcType=VARCHAR},
+      </if>
+      <if test="bailaccountid != null" >
+        #{bailaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="nominalaccountid != null" >
+        #{nominalaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptaccountid != null" >
+        #{receiptaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="intdate != null" >
+        #{intdate,jdbcType=VARCHAR},
+      </if>
+      <if test="tims != null" >
+        #{tims,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountid != null" >
+        #{accountid,jdbcType=VARCHAR},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=BIGINT},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="fromproductid != null" >
+        #{fromproductid,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=BIGINT},
+      </if>
+      <if test="rspcode != null" >
+        #{rspcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ischange != null" >
+        #{ischange,jdbcType=INTEGER},
+      </if>
+      <if test="filerspname != null" >
+        #{filerspname,jdbcType=VARCHAR},
+      </if>
+      <if test="mborrowflag != null" >
+        #{mborrowflag,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustflag != null" >
+        #{entrustflag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.iqb.jxw.fes.filehandle.entity.DtDebtTmp" >
+    update dt_debt_tmp
+    <set >
+      <if test="instcode != null" >
+        InstCode = #{instcode,jdbcType=CHAR},
+      </if>
+      <if test="acctno != null" >
+        AcctNo = #{acctno,jdbcType=VARCHAR},
+      </if>
+      <if test="custno != null" >
+        CustNo = #{custno,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null" >
+        ProductId = #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="raisedate != null" >
+        RaiseDate = #{raisedate,jdbcType=VARCHAR},
+      </if>
+      <if test="raiseenddate != null" >
+        RaiseEndDate = #{raiseenddate,jdbcType=VARCHAR},
+      </if>
+      <if test="inttype != null" >
+        IntType = #{inttype,jdbcType=CHAR},
+      </if>
+      <if test="intpayday != null" >
+        IntPayDay = #{intpayday,jdbcType=CHAR},
+      </if>
+      <if test="duration != null" >
+        Duration = #{duration,jdbcType=SMALLINT},
+      </if>
+      <if test="debtamount != null" >
+        DebtAmount = #{debtamount,jdbcType=DECIMAL},
+      </if>
+      <if test="debtrate != null" >
+        DebtRate = #{debtrate,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=CHAR},
+      </if>
+      <if test="proddesc != null" >
+        ProdDesc = #{proddesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bailacctno != null" >
+        BailAcctNo = #{bailacctno,jdbcType=VARCHAR},
+      </if>
+      <if test="bailaccountid != null" >
+        BailAccountId = #{bailaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="nominalaccountid != null" >
+        NominalAccountId = #{nominalaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptaccountid != null" >
+        ReceiptAccountId = #{receiptaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="intdate != null" >
+        IntDate = #{intdate,jdbcType=VARCHAR},
+      </if>
+      <if test="tims != null" >
+        tims = #{tims,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountid != null" >
+        AccountId = #{accountid,jdbcType=VARCHAR},
+      </if>
+      <if test="fid != null" >
+        Fid = #{fid,jdbcType=BIGINT},
+      </if>
+      <if test="rank != null" >
+        Rank = #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="fromproductid != null" >
+        FromProductId = #{fromproductid,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=BIGINT},
+      </if>
+      <if test="rspcode != null" >
+        RspCode = #{rspcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ischange != null" >
+        isChange = #{ischange,jdbcType=INTEGER},
+      </if>
+      <if test="filerspname != null" >
+        fileRspName = #{filerspname,jdbcType=VARCHAR},
+      </if>
+      <if test="mborrowflag != null" >
+        MborrowFlag = #{mborrowflag,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustflag != null" >
+        EntrustFlag = #{entrustflag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.iqb.jxw.fes.filehandle.entity.DtDebtTmp" >
+    update dt_debt_tmp
+    set InstCode = #{instcode,jdbcType=CHAR},
+      AcctNo = #{acctno,jdbcType=VARCHAR},
+      CustNo = #{custno,jdbcType=VARCHAR},
+      ProductId = #{productid,jdbcType=VARCHAR},
+      RaiseDate = #{raisedate,jdbcType=VARCHAR},
+      RaiseEndDate = #{raiseenddate,jdbcType=VARCHAR},
+      IntType = #{inttype,jdbcType=CHAR},
+      IntPayDay = #{intpayday,jdbcType=CHAR},
+      Duration = #{duration,jdbcType=SMALLINT},
+      DebtAmount = #{debtamount,jdbcType=DECIMAL},
+      DebtRate = #{debtrate,jdbcType=DECIMAL},
+      State = #{state,jdbcType=CHAR},
+      ProdDesc = #{proddesc,jdbcType=VARCHAR},
+      BailAcctNo = #{bailacctno,jdbcType=VARCHAR},
+      BailAccountId = #{bailaccountid,jdbcType=VARCHAR},
+      NominalAccountId = #{nominalaccountid,jdbcType=VARCHAR},
+      ReceiptAccountId = #{receiptaccountid,jdbcType=VARCHAR},
+      IntDate = #{intdate,jdbcType=VARCHAR},
+      tims = #{tims,jdbcType=TIMESTAMP},
+      AccountId = #{accountid,jdbcType=VARCHAR},
+      Fid = #{fid,jdbcType=BIGINT},
+      Rank = #{rank,jdbcType=INTEGER},
+      FromProductId = #{fromproductid,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=BIGINT},
+      version = #{version,jdbcType=BIGINT},
+      RspCode = #{rspcode,jdbcType=VARCHAR},
+      isChange = #{ischange,jdbcType=INTEGER},
+      fileRspName = #{filerspname,jdbcType=VARCHAR},
+      MborrowFlag = #{mborrowflag,jdbcType=VARCHAR},
+      EntrustFlag = #{entrustflag,jdbcType=VARCHAR}
+    where sid = #{sid,jdbcType=BIGINT}
+  </update>
+</mapper>

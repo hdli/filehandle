@@ -1,6 +1,6 @@
 package com.iqb.jxw.fes.filehandle.service.impl;
 
-import com.iqb.jxw.fes.filehandle.common.utils.DateTools;
+import com.iqb.jxw.fes.filehandle.common.util.DateTools;
 import com.iqb.jxw.fes.filehandle.dao.MigrateFileMapper;
 import com.iqb.jxw.fes.filehandle.entity.MigrateFile;
 import com.iqb.jxw.fes.filehandle.service.MigrateFileService;

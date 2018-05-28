@@ -28,24 +28,6 @@ public class MultipleDataSourceInterceptor {
      * @param
      * @throws Exception
      */
-   /* @Before("execution(* com.cn.bee.server.model.service..*(..))")
-    public void beforeMethod(JoinPoint joinPoint) throws Exception {
-        Class<?> clazz = joinPoint.getTarget().getClass();
-        String className = clazz.getName();
-        System.out.println(className);
-        if (ClassUtils.isAssignable(clazz, Proxy.class)) {
-            className = joinPoint.getSignature().getDeclaringTypeName();
-        }
-        dynamicSetDataSoruce(className);
-    }
-    public void dynamicSetDataSoruce(String className){
-        System.out.println("=====切换数据源："+className);
-        if (className.contains("Test")) {
-            CustomerContextHolder.setCustomerType(CustomerContextHolder.DATA_SOURCE_ORACLE);
-        } else {
-            CustomerContextHolder.clearCustomerType();
-        }
-    }*/
     @Pointcut("execution(* com.iqb.jxw.fes.filehandle.service..*(..))")
     public void pointCut(){
     }

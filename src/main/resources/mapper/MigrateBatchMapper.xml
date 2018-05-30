@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iqb.jxw.fes.filehandle.dao.MigrateBatchMapper">
+
+	<insert id="addDebtcgTmpBatch" parameterType="java.util.List">
+		insert into dt_debt_tmp(InstCode,ProductId,State,BailAccountId,tims,Rank,flag,version,RspCode,isChange) values
+		<foreach collection="list" item="item" index="index" separator="," >
+			(#{item.instCode},#{item.productId},#{item.state},#{item.bailAccountId},#{item.tims},#{item.rank},#{item.flag},#{item.version},#{item.rspCode},#{item.isChange})
+		</foreach>
+	</insert>
+	<update id="updateDebtcgTmpBailAcctNoBatch" parameterType="map">
+		UPDATE dt_debt_tmp a
+		INNER JOIN dt_user_acct c ON a.InstCode=c.InstCode AND a.bailAccountId=c.AccountId AND c.AcctNo IS NOT NULL
+		SET
+		a.BailAcctNo=c.AcctNo,
+		a.RspCode='01'
+		WHERE a.flag=#{mid} AND a.version=#{version} AND a.RspCode='00'
+	</update>
+	<update id="updateDebtByCgTmpBatch" parameterType="map">
+		UPDATE dt_debt a
+		INNER JOIN dt_debt_tmp c ON a.InstCode=c.InstCode AND c.ProductId=a.ProductId AND a.State!=12
+		SET
+		c.RspCode='02',
+		a.BailAcctNo=c.BailAcctNo
+		WHERE c.flag=#{mid} AND c.version=#{version} AND c.RspCode='01'
+	</update>
+	<select id="selectCountDebtcgFail" resultType="org.apache.commons.collections.map.CaseInsensitiveMap" parameterType="map">
+		SELECT  RspCode as rspCode, Rank as rank FROM dt_debt_tmp WHERE flag=#{mid} and RspCode in ('00','01')
+	</select>
+
+	<delete id="deleteDebtTmpByMid" parameterType="map">
+		delete from dt_debt_tmp where flag=#{mid}
+	</delete>
+  
+</mapper>

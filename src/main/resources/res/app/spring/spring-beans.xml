@@ -4,5 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="migratefileJobFactory" class="com.iqb.jxw.fes.filehandle.migrate.job.MigratefileJobFactory" factory-method="get" lazy-init="false"/>
-
+    <!--测试-->
+    <bean id="emailListener" class="com.iqb.jxw.fes.filehandle.test.listener.EmailListener"/>
 </beans>

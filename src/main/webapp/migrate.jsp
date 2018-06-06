@@ -36,29 +36,26 @@
         <h4 class="modal-title">文件操作</h4>
       </div>
       <div class="modal-body">
-		     <form id="form" class="form-horizontal" action="<%=path%>/mfile/Migrate-parseFile.action" target="submitFrame" onsubmit="return onSubmit();"  method="post" enctype="multipart/form-data">
-					  <%--<div class="form-group">
+		     <form id="form" class="form-horizontal" action="<%=path%>/migrate/upload" target="submitFrame" onsubmit="return onSubmit();"  method="post" enctype="multipart/form-data">
+					  <div class="form-group">
 						  <label class="radio-inline">
 						    <input type="radio" name="category" value="commonProd" checked>普通产品
 							</label>
 							<label class="radio-inline">
 							  <input type="radio" name="category" value="liquProd">高流转性产品
 							</label>
-						</div>--%>
+						</div>
 					  <div class="form-group">
-					    <%--<label for="executeId" class="required">执行命令</label>
+					    <label for="executeId" class="required">执行命令</label>
 					    <select class="form-control" name="executeId" id="executeId">
 							  <option value="">请选择执行命令</option>
 							  <option value="11">开户入库</option>
 							  <option value="21">标的入库</option>
 							  <option value="31">签约关系入库</option>
 							  <option value="41" show="commonProd">普通债权入库</option>
-							  &lt;%&ndash;
-							  <option value="40">高流转债权转成银行文件</option>
-							  <option value="51">交易明细入库</option>
-							  <option value="61">全流入库</option>
-							  &ndash;%&gt;
-							</select>--%>
+							  <option value="71">标的更新</option>
+
+							</select>
 							<label for="instCode" class="required">机构号</label>
 					    <input type="text" class="form-control" name="instCode"  id="instCode" >
 
@@ -67,11 +64,11 @@
 					  	 	<label for="resultName">结果文件名</label>
 					      <input type="text" class="form-control" name="resultName"  id="resultName" placeholder="结果文件名">
 					  </div>--%>
-					 <%-- <div class="form-group showDiv" show="11,21" style="display:none;">
+					  <div class="form-group showDiv" show="11,21" style="display:none;">
 					    <label for="requestfile">请求文件</label>
 					    <input type="file" class="form-control" name="requestfile"  id="requestfile" >
-					  </div>--%>
-					  <div class="form-group">
+					  </div>
+					  <div class="form-group showDiv" show="11,21,31,41,71" style="display:none;">
 					    <label for="resultfile">结果文件</label>
 					    <input type="file" class="form-control" name="resultfile"  id="resultfile" >
 					  </div>
@@ -85,19 +82,19 @@
 <script type="text/javascript">
 function onSubmit(){
 	var frm=$("#form");
-	/*if(!frm.find("[name=executeId]").val()){
+	if(!frm.find("[name=executeId]").val()){
 		alert("执行命令不能为空");
 		return false;
-	}*/
+	}
 	if(!frm.find("input[name=instCode]").val()){
 		alert("机构号不能为空");
 		return false;
 	}
-	/*if(!frm.find("input[name=resultName]").val()&&frm.find("input[name=resultfile]").val()){
+	if(!frm.find("input[name=resultName]").val()&&frm.find("input[name=resultfile]").val()){
 		var name=frm.find("input[name=resultfile]").val(),end=name.lastIndexOf(".");
 		name=name.substring(name.lastIndexOf("\\")+1,end>0?end:name.length);
 		frm.find("input[name=resultName]").val(name);
-	}*/
+	}
 	if($("#commit").attr("disabled")){
 		return false;
 	}
@@ -127,14 +124,15 @@ $(document).ready(function(){
       {text:"签约关系", value:3},
       {text:"债权迁移", value:4},
       {text:"交易明细流水", value:5},
-      {text:"交易明细全流", value:6}
+      {text:"交易明细全流", value:6},
+      {text:"标的更新", value:7}
   ];
- /* $(":input[name='category']").change(function(){
+  $(":input[name='category']").change(function(){
   	   $("#executeId").find("option").swh($(this).val());
   });	
   $("#executeId").change(function(){
      $(".showDiv").swh($(this).val());
-  });*/
+  });
   $('#myModal').on('hide.zui.modal', function() {
       $("#form")[0].reset();
   });
@@ -144,7 +142,7 @@ $(document).ready(function(){
                 var d = $.Deferred();
                 var param=$.filterEmpty(filter);
                 $.ajax({
-                    url: "<%=path%>/mfile/Migrate-query.action",
+                    url: "<%=path%>/migrate/query",
                     dataType:"json",
                     data: param
                 }).done(function(response){

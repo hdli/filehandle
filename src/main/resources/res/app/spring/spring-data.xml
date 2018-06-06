@@ -12,7 +12,8 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd" >
 
 	<!--扫描service包下所有使用注解的类型-->
-	<context:component-scan base-package="com.iqb.jxw.fes.filehandle"/>
+	<context:component-scan base-package="com.iqb.jxw.fes"/>
+
 	<!--<bean id="dataConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
 		<!--<property name="ignoreUnresolvablePlaceholders" value="true" />-->
 		<!--<property name="locations">-->
@@ -85,7 +86,7 @@
 		<property name="filters" value="stat" />
 	</bean>
 
-	<bean id="mutipleDataSource" class="com.iqb.jxw.fes.filehandle.common.datesource.MutipleDataSource">
+	<bean id="mutipleDataSource" class="com.iqb.jxw.fes.common.datesource.MutipleDataSource">
 		<property name="defaultTargetDataSource" ref="dataSource15"></property>
 		<property name="targetDataSources">
 			<map>

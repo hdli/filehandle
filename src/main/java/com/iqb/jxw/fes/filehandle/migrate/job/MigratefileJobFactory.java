@@ -1,6 +1,7 @@
 package com.iqb.jxw.fes.filehandle.migrate.job;
 
-import com.iqb.jxw.fes.filehandle.common.util.SpringBeanUtil;
+import com.iqb.jxw.fes.common.util.SpringBeanUtil;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
@@ -24,9 +25,14 @@ public class MigratefileJobFactory implements ApplicationListener<ContextRefresh
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if(event.getApplicationContext().getParent() == null){
-            Map<String,MigratefileJob> jobs= SpringBeanUtil.getApplicationContext().getBeansOfType(MigratefileJob.class);
-            for(Map.Entry<String,MigratefileJob> job:jobs.entrySet()){
-                cache.put(job.getValue().getKey(),job.getValue());
+            ApplicationContext context = SpringBeanUtil.getApplicationContext();
+            if(context == null){
+                System.out.println("context is null");
+            }else {
+                Map<String,MigratefileJob> jobs= context.getBeansOfType(MigratefileJob.class);
+                for(Map.Entry<String,MigratefileJob> job:jobs.entrySet()){
+                    cache.put(job.getValue().getKey(),job.getValue());
+                }
             }
         }
     }

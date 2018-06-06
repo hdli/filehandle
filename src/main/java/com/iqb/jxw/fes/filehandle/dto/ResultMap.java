@@ -1,4 +1,4 @@
-package com.iqb.jxw.fes.filehandle.migrate.dto;
+package com.iqb.jxw.fes.filehandle.dto;
 
 import java.io.Serializable;
 import java.util.List;

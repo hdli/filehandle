@@ -1,6 +1,6 @@
 package com.iqb.jxw.fes.filehandle.service;
 
-import com.iqb.jxw.fes.filehandle.entity.MigrateFile;
+import com.iqb.jxw.fes.filehandle.entity.Migratefile;
 
 import java.util.List;
 
@@ -9,7 +9,11 @@ import java.util.List;
  */
 public interface MigrateFileService {
 
-    List<MigrateFile> findTodayTest();
+    List<Migratefile> findTodayTest();
 
-    MigrateFile selectByPrimaryKeyTest(Long sid);
+    Migratefile selectByPrimaryKeyTest(Long sid);
+
+    Integer saveMigratefile(Migratefile migratefile);
+
+    Integer saveOnDuplicateMigrate(Migratefile migratefile);
 }

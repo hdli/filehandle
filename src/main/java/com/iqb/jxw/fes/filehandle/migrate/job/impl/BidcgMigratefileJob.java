@@ -1,8 +1,9 @@
 package com.iqb.jxw.fes.filehandle.migrate.job.impl;
 
-import com.iqb.jxw.fes.filehandle.migrate.dto.ResultMap;
+import com.iqb.jxw.fes.filehandle.dto.ResultMap;
+import com.iqb.jxw.fes.filehandle.entity.Migratefile;
 import com.iqb.jxw.fes.filehandle.migrate.job.MigratefileJob;
-import com.iqb.jxw.fes.filehandle.migrate.model.Migratefile;
+
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;

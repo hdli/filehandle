@@ -1,4 +1,4 @@
-package com.iqb.jxw.fes.filehandle.common.util;
+package com.iqb.jxw.fes.common.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

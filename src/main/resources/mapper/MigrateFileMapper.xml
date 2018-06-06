@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iqb.jxw.fes.filehandle.dao.MigrateFileMapper" >
-  <resultMap id="BaseResultMap" type="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
+  <resultMap id="BaseResultMap" type="com.iqb.jxw.fes.filehandle.entity.Migratefile" >
     <id column="sid" property="sid" jdbcType="BIGINT" />
     <result column="instCode" property="instcode" jdbcType="CHAR" />
     <result column="fileName" property="filename" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
     <result column="up_oss" property="upOss" jdbcType="INTEGER" />
     <result column="migrateType" property="migratetype" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.iqb.jxw.fes.filehandle.entity.MigrateFile" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.iqb.jxw.fes.filehandle.entity.Migratefile" extends="BaseResultMap" >
     <result column="reason" property="reason" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -44,15 +44,15 @@
     delete from migratefile
     where sid = #{sid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
-    insert into migratefile (sid, instCode, fileName, 
+  <insert id="insert" useGeneratedKeys="true" keyProperty="sid" parameterType="com.iqb.jxw.fes.filehandle.entity.Migratefile" >
+    insert into migratefile (instCode, fileName,
       finalCounts, state, tims, 
       code, type, createTims, 
       io, executeId, version, 
       endTime, category, sucCounts, 
       failCounts, fileRspName, up_oss, 
       migrateType, reason)
-    values (#{sid,jdbcType=BIGINT}, #{instcode,jdbcType=CHAR}, #{filename,jdbcType=VARCHAR}, 
+    values (#{instcode,jdbcType=CHAR}, #{filename,jdbcType=VARCHAR},
       #{finalcounts,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, #{tims,jdbcType=TIMESTAMP}, 
       #{code,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{createtims,jdbcType=TIMESTAMP}, 
       #{io,jdbcType=INTEGER}, #{executeid,jdbcType=INTEGER}, #{version,jdbcType=BIGINT}, 
@@ -60,12 +60,9 @@
       #{failcounts,jdbcType=INTEGER}, #{filerspname,jdbcType=VARCHAR}, #{upOss,jdbcType=INTEGER}, 
       #{migratetype,jdbcType=INTEGER}, #{reason,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="sid" parameterType="com.iqb.jxw.fes.filehandle.entity.Migratefile" >
     insert into migratefile
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="sid != null" >
-        sid,
-      </if>
       <if test="instcode != null" >
         instCode,
       </if>
@@ -125,9 +122,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="sid != null" >
-        #{sid,jdbcType=BIGINT},
-      </if>
       <if test="instcode != null" >
         #{instcode,jdbcType=CHAR},
       </if>
@@ -187,7 +181,131 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
+
+  <insert id="insertOnDuplicate" useGeneratedKeys="true" keyProperty="sid" parameterType="com.iqb.jxw.fes.filehandle.entity.Migratefile">
+    insert into migratefile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="instcode != null" >
+        instCode,
+      </if>
+      <if test="filename != null" >
+        fileName,
+      </if>
+      <if test="finalcounts != null" >
+        finalCounts,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="tims != null" >
+        tims,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createtims != null" >
+        createTims,
+      </if>
+      <if test="io != null" >
+        io,
+      </if>
+      <if test="executeid != null" >
+        executeId,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="succounts != null" >
+        sucCounts,
+      </if>
+      <if test="failcounts != null" >
+        failCounts,
+      </if>
+      <if test="filerspname != null" >
+        fileRspName,
+      </if>
+      <if test="upOss != null" >
+        up_oss,
+      </if>
+      <if test="migratetype != null" >
+        migrateType,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="instcode != null" >
+        #{instcode,jdbcType=CHAR},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="finalcounts != null" >
+        #{finalcounts,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="tims != null" >
+        #{tims,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createtims != null" >
+        #{createtims,jdbcType=TIMESTAMP},
+      </if>
+      <if test="io != null" >
+        #{io,jdbcType=INTEGER},
+      </if>
+      <if test="executeid != null" >
+        #{executeid,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=BIGINT},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="succounts != null" >
+        #{succounts,jdbcType=INTEGER},
+      </if>
+      <if test="failcounts != null" >
+        #{failcounts,jdbcType=INTEGER},
+      </if>
+      <if test="filerspname != null" >
+        #{filerspname,jdbcType=VARCHAR},
+      </if>
+      <if test="upOss != null" >
+        #{upOss,jdbcType=INTEGER},
+      </if>
+      <if test="migratetype != null" >
+        #{migratetype,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+    ON duplicate key UPDATE state=#{state,jdbcType=VARCHAR}
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.iqb.jxw.fes.filehandle.entity.Migratefile" >
     update migratefile
     <set >
       <if test="instcode != null" >
@@ -250,7 +368,7 @@
     </set>
     where sid = #{sid,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.iqb.jxw.fes.filehandle.entity.Migratefile" >
     update migratefile
     set instCode = #{instcode,jdbcType=CHAR},
       fileName = #{filename,jdbcType=VARCHAR},
@@ -273,7 +391,7 @@
       reason = #{reason,jdbcType=LONGVARCHAR}
     where sid = #{sid,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.iqb.jxw.fes.filehandle.entity.MigrateFile" >
+  <update id="updateByPrimaryKey" parameterType="com.iqb.jxw.fes.filehandle.entity.Migratefile" >
     update migratefile
     set instCode = #{instcode,jdbcType=CHAR},
       fileName = #{filename,jdbcType=VARCHAR},

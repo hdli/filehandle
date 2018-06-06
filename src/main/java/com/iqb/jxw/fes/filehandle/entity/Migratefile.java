@@ -1,8 +1,12 @@
 package com.iqb.jxw.fes.filehandle.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MigrateFile {
+public class Migratefile implements Serializable {
+
+    private static final long serialVersionUID = -5715070085762557960L;
+
     private Long sid;
 
     private String instcode;

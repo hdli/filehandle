@@ -1,4 +1,4 @@
-package com.iqb.jxw.fes.filehandle.common.datesource;
+package com.iqb.jxw.fes.common.datesource;
 
 import com.iqb.jxw.fes.filehandle.controller.FileController;
 import org.apache.commons.lang.ClassUtils;

@@ -1,7 +1,7 @@
 package com.iqb.jxw.fes.filehandle.dao;
 
 
-import com.iqb.jxw.fes.filehandle.entity.MigrateFile;
+import com.iqb.jxw.fes.filehandle.entity.Migratefile;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -11,17 +11,19 @@ import java.util.List;
 public interface MigrateFileMapper {
     int deleteByPrimaryKey(Long sid);
 
-    int insert(MigrateFile record);
+    int insert(Migratefile record);
 
-    int insertSelective(MigrateFile record);
+    int insertSelective(Migratefile record);
 
-    MigrateFile selectByPrimaryKey(Long sid);
+    Migratefile selectByPrimaryKey(Long sid);
 
-    int updateByPrimaryKeySelective(MigrateFile record);
+    int updateByPrimaryKeySelective(Migratefile record);
 
-    int updateByPrimaryKeyWithBLOBs(MigrateFile record);
+    int updateByPrimaryKeyWithBLOBs(Migratefile record);
 
-    int updateByPrimaryKey(MigrateFile record);
+    int updateByPrimaryKey(Migratefile record);
 
-    List<MigrateFile> findToday(@Param("date") String date);
+    List<Migratefile> findToday(@Param("date") String date);
+
+    int insertOnDuplicate(Migratefile record);
 }

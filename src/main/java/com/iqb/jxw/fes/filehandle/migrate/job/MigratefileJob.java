@@ -1,6 +1,7 @@
 package com.iqb.jxw.fes.filehandle.migrate.job;
 
-import com.iqb.jxw.fes.filehandle.migrate.model.Migratefile;
+
+import com.iqb.jxw.fes.filehandle.entity.Migratefile;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
